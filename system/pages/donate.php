@@ -37,11 +37,11 @@ if(!isset($config['pagSeguro']) || !count($config['pagSeguro']) || !count($confi
 	echo "PagSeguro is disabled. If you're an admin please configure this script in config.local.php.";
 	return;
 }
-/*
+
 if(strpos(BASE_URL, 'localhost') !== false || strpos(BASE_URL, '127.0.0.1') !== false) {
 	echo 'PagSeguro is not supported on localhost (' . BASE_URL . '). Please change your domain to public one and visit this site again later.';
 	return;
-}*/
+}
 
 if(empty($action)) {
 	if(!$logged) {
