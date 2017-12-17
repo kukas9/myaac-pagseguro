@@ -1,11 +1,11 @@
 <table width="100%" border="0" cellpadding="4" cellspacing="1">
 	<tbody>
 	<tr>
-		<td class="white" colspan="3" bgcolor="{{ config.vdarkborder }}"><span class="style4">Donate to receive points</span></td>
+		<td colspan="3" bgcolor="{{ config.vdarkborder }}" class="white"><span class="style4">Donate to receive points</span></td>
 	</tr>
 	<tr bgcolor="{{ config.vdarkborder }}">
-		<td width="35%"><b>Donation</b></td>
-		<td width="35%"><b>Points</b></td>
+		<td class="white" width="35%"><b>Donation</b></td>
+		<td class="white" width="35%"><b>Points</b></td>
 	</tr>
 	{% set i = 1 %}
 	{% for price, points in config.pagSeguro.options %}
@@ -32,7 +32,7 @@
 		</tr>
 		<tr bgcolor="{{ config.darkborder }}">
 			<td colspan="2">
-				<input type="image" src="https://p.simg.uol.com.br/out/pagseguro/i/botoes/carrinhoproprio/btnFinalizar.jpg" name="submit"/>
+				<input type="image" src="https://p.simg.uol.com.br/out/pagseguro/i/botoes/carrinhoproprio/btnFinalizar.jpg" name="submit" {% if is_localhost %}disabled{% endif %}/>
 			</td>
 		</tr>
 		</tbody>

@@ -13,6 +13,7 @@
 require_once('../common.php');
 require_once(SYSTEM . 'functions.php');
 require_once(SYSTEM . 'init.php');
+require_once(PLUGINS . 'pagseguro/config.php');
 require_once(LIBS . 'PagSeguroLibrary/PagSeguroLibrary.php');
 
 if(!isset($config['pagSeguro']) || !count($config['pagSeguro']) || !count($config['pagSeguro']['options'])) {

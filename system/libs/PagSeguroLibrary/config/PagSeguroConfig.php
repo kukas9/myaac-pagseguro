@@ -1,7 +1,6 @@
 <?php
 require_once('common.php');
-require_once(BASE . 'config.php');
-require_once(BASE . 'config.local.php');
+require(PLUGINS . 'pagseguro/config.php');
 /*
  ************************************************************************
  PagSeguro Config File
@@ -10,12 +9,12 @@ require_once(BASE . 'config.local.php');
 
 $PagSeguroConfig = array();
 
-$PagSeguroConfig['environment'] = "production"; // production, sandbox
+$PagSeguroConfig['environment'] = $config['pagSeguro']['environment']; // production, sandbox
 
 $PagSeguroConfig['credentials'] = array();
 $PagSeguroConfig['credentials']['email'] = $config['pagSeguro']['email'];
-$PagSeguroConfig['credentials']['token']['production'] = $config['pagSeguro']['token'];
-$PagSeguroConfig['credentials']['token']['sandbox'] = "TOKENHERE";
+$PagSeguroConfig['credentials']['token']['production'] = $config['pagSeguro']['token']['production'];
+$PagSeguroConfig['credentials']['token']['sandbox'] = $config['pagSeguro']['token']['sandbox'];
 
 $PagSeguroConfig['application'] = array();
 $PagSeguroConfig['application']['charset'] = "UTF-8"; // UTF-8, ISO-8859-1
