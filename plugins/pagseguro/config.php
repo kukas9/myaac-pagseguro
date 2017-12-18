@@ -15,7 +15,7 @@ $config['pagSeguro'] = array(
 	'environment' => 'production', // production, sandbox
 	'token' => array(
 		'production' => 'yourtokenhere',
-		'sandbox' => 'TOKENHERE',
+		'sandbox' => 'yourtokenhere',
 	),
 	'urlRedirect' => '?subtopic=points&action=final', // default should be good
 	'productName' => 'Premium Points', // or Coins
