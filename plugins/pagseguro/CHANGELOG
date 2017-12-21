@@ -1,2 +1,9 @@
+[1.1 - 21.12.2017]
+	* fixed bug with PagSeguro - "[11028] - Item amount is required"
+	* fixed bug with not existing twig config.pagSeguro variable
+	* fixed bug with othire and other servers where account number instead of name is used
+	* added url redirect to login link
+	* added "required" option to points input
+
 [1.0 - 17.12.2017]
 	* First release

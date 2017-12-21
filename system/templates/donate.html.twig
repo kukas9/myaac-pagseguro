@@ -16,7 +16,7 @@
 </table>
 </br>
 <form target="pagseguro" method="post" action="{{ getLink('pagseguro') }}">
-	<input type="hidden" name="reference" value="{{ account_logged.getName() }}">
+	<input type="hidden" name="reference" value="{% if constant('USE_ACCOUNT_NAME') %}{{ account_logged.getName() }}{% else %}{{ account_logged.getId() }}{% endif %}">
 	<table border="0" cellpadding="4" cellspacing="1" width="100%">
 		<tbody>
 		<tr bgcolor="{{ config.vdarkborder }}" class="white">
@@ -24,11 +24,11 @@
 		</tr>
 		<tr bgcolor="{{ config.darkborder }}">
 			<td width="10%">Your account</td>
-			<td><strong>{{ account_logged.getName() }}</strong></td>
+			<td><strong>{% if constant('USE_ACCOUNT_NAME') %}{{ account_logged.getName() }}{% else %}{{ account_logged.getId() }}{% endif %}</strong></td>
 		</tr>
 		<tr bgcolor="{{ config.darkborder }}">
 			<td width="10%">Points</td>
-			<td><input name="itemCount" type="number" min="1" size="5" maxlength="5"></td>
+			<td><input name="itemCount" type="number" min="1" size="5" maxlength="5" required/></td>
 		</tr>
 		<tr bgcolor="{{ config.darkborder }}">
 			<td colspan="2">

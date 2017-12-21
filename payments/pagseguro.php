@@ -7,7 +7,7 @@
  * @author    Slawkens <slawkens@gmail.com>
  * @website   github.com/slawkens/myaac-pagseguro
  * @website   github.com/ivenspontes/
- * @version   1.0
+ * @version   1.1
  */
 
 require_once('../common.php');
@@ -34,7 +34,7 @@ if('post' == strtolower($method)) {
 			$transaction = PagSeguroNotificationService::checkTransaction($credentials, $notificationCode);
 
 			$arrayPDO['transaction_code'] = $transaction->getCode();
-			$arrayPDO['name'] = $transaction->getReference();
+			$arrayPDO['account'] = $transaction->getReference();
 			$arrayPDO['payment_method'] = $transaction->getPaymentMethod()->getType()->getTypeFromValue();
 			$arrayPDO['status'] = $transaction->getStatus()->getTypeFromValue();
 			$item = $transaction->getItems();
@@ -46,7 +46,7 @@ if('post' == strtolower($method)) {
 				$conn = new PDO('mysql:host='.$config['database_host'].';dbname='.$config['database_name'].'', $config['database_user'], $config['database_password']);
 				$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-				$stmt = $conn->prepare('INSERT into pagseguro_transactions SET transaction_code = :transaction_code, name = :name, payment_method = :payment_method, status = :status, item_count = :item_count, data = :data');
+				$stmt = $conn->prepare('INSERT into pagseguro_transactions SET transaction_code = :transaction_code, name = :account, payment_method = :payment_method, status = :status, item_count = :item_count, data = :data');
 				$stmt->execute($arrayPDO);
 
 				if ($arrayPDO['status'] == 'PAID') {
@@ -59,8 +59,8 @@ if('post' == strtolower($method)) {
 						$field = 'coins';
 					}
 					
-					$stmt = $conn->prepare('UPDATE accounts SET ' . $field . ' = ' . $field . ' + :item_count WHERE name = :name');
-					$stmt->execute(array('item_count' => $arrayPDO['item_count'], 'name' => $arrayPDO['name']));
+					$stmt = $conn->prepare('UPDATE accounts SET ' . $field . ' = ' . $field . ' + :item_count WHERE ' . (USE_ACCOUNT_NAME ? 'id' : 'name') . ' = :account');
+					$stmt->execute(array('item_count' => $arrayPDO['item_count'], 'account' => $arrayPDO['account']));
 
 					$stmt = $conn->prepare("UPDATE pagseguro_transactions SET status = 'DELIVERED' WHERE transaction_code = :transaction_code AND status = 'PAID'");
 					$stmt->execute(array('transaction_code' => $arrayPDO['transaction_code']));

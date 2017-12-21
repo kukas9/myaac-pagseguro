@@ -7,9 +7,10 @@
  * @author    Slawkens <slawkens@gmail.com>
  * @website   github.com/slawkens/myaac-pagseguro
  * @website   github.com/ivenspontes/
- * @version   1.0
+ * @version   1.1
  */
 
+require_once(PLUGINS . 'pagseguro/config.php');
 require_once(LIBS . 'PagSeguroLibrary/PagSeguroLibrary.php');
 
 $paymentRequest = new PagSeguroPaymentRequest();

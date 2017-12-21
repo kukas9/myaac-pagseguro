@@ -7,11 +7,13 @@
  * @author    Slawkens <slawkens@gmail.com>
  * @website   github.com/slawkens/myaac-pagseguro
  * @website   github.com/ivenspontes/
- * @version   1.0
+ * @version   1.1
  */
 defined('MYAAC') or die('Direct access not allowed!');
 
 require_once(PLUGINS . 'pagseguro/config.php');
+$twig->addGlobal('config', $config);
+
 if(!isset($config['pagSeguro']) || !count($config['pagSeguro']) || !count($config['pagSeguro']['options'])) {
 	echo "PagSeguro is disabled. If you're an admin please configure this script in config.local.php.";
 	return;
@@ -25,7 +27,12 @@ if($is_localhost) {
 
 if(empty($action)) {
 	if(!$logged) {
-		echo 'You are not logged in. <a href="' . getLink('account/manage') . '">Log in</a> first to make a donate..';
+		$was_before = $config['friendly_urls'];
+		$config['friendly_urls'] = true;
+		
+		echo 'To buy points you need to be logged. ' . generateLink(getLink('?subtopic=accountmanagement') . '&redirect=' . urlencode(BASE_URL . '?subtopic=points'), 'Login') . ' first to make a donate.';
+		
+		$config['friendly_urls'] = $was_before;
 	}
 	else {
 		echo $twig->render('donate.html.twig', array('is_localhost' => $is_localhost));
