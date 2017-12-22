@@ -1,3 +1,6 @@
+[1.1.1 - 22.12.2017]
+	* last fix to pagseguro config
+
 [1.1 - 21.12.2017]
 	* fixed bug with PagSeguro - "[11028] - Item amount is required"
 	* fixed bug with not existing twig config.pagSeguro variable
