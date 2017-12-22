@@ -1,12 +1,11 @@
 <?php
-require_once('common.php');
-require(PLUGINS . 'pagseguro/config.php');
 /*
  ************************************************************************
  PagSeguro Config File
  ************************************************************************
  */
 
+global $config;
 $PagSeguroConfig = array();
 
 $PagSeguroConfig['environment'] = $config['pagSeguro']['environment']; // production, sandbox
