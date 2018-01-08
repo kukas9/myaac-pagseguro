@@ -7,7 +7,6 @@
  * @author    Slawkens <slawkens@gmail.com>
  * @website   github.com/slawkens/myaac-pagseguro
  * @website   github.com/ivenspontes/
- * @version   1.1.1
  */
 defined('MYAAC') or die('Direct access not allowed!');
 

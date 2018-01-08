@@ -7,8 +7,18 @@
  * @author    Slawkens <slawkens@gmail.com>
  * @website   github.com/slawkens/myaac-pagseguro
  * @website   github.com/ivenspontes/
- * @version   1.1.1
  */
+defined('MYAAC') or die('Direct access not allowed!');
+$title = 'PagSeguro payment';
+
+if(!isset($_POST['itemCount'])) {
+	echo 'Please enter item count.';
+	return;
+}
+if(!isset($_POST['reference'])) {
+	echo 'Please enter reference.';
+	return;
+}
 
 require_once(PLUGINS . 'pagseguro/config.php');
 require_once(LIBS . 'PagSeguroLibrary/PagSeguroLibrary.php');
