@@ -29,4 +29,13 @@ CREATE TABLE IF NOT EXISTS `pagseguro_transactions` (
 	success('Imported pagseguro_transactions table to database.');
 }
 
+if(!extension_loaded('curl')) {
+	error("cURL php extension is not loaded, please install it with following command (on linux):" . "<br/>" .
+	"sudo apt-get install php5-curl" . "<br/>" .
+	"sudo service apache2 restart" . "<br/><br/>" .
+	"for XAMPP (Windows) you need to uncomment (Remove selicolon - ;) this line in your php.ini:" . "<br/>" .
+	";extension=php_curl.dll");
+	return;
+}
+
 ?>

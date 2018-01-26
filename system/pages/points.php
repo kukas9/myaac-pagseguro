@@ -18,6 +18,15 @@ if(!isset($config['pagSeguro']) || !count($config['pagSeguro']) || !count($confi
 	return;
 }
 
+if(!extension_loaded('curl')) {
+	error("cURL php extension is not loaded, please install it with following command (on linux):" . "<br/>" .
+	"sudo apt-get install php5-curl" . "<br/>" .
+	"sudo service apache2 restart" . "<br/><br/>" .
+	"for XAMPP (Windows) you need to uncomment (Remove selicolon - ;) this line in your php.ini:" . "<br/>" .
+	";extension=php_curl.dll");
+	return;
+}
+
 $is_localhost = strpos(BASE_URL, 'localhost') !== false || strpos(BASE_URL, '127.0.0.1') !== false;
 if($is_localhost) {
 	warning("PagSeguro is not supported on localhost (" . BASE_URL . "). Please change your domain to public one and visit this site again later.<br/>

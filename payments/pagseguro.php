@@ -59,7 +59,7 @@ if('post' == strtolower($method)) {
 						$field = 'coins';
 					}
 					
-					$stmt = $conn->prepare('UPDATE accounts SET ' . $field . ' = ' . $field . ' + :item_count WHERE ' . (USE_ACCOUNT_NAME ? 'id' : 'name') . ' = :account');
+					$stmt = $conn->prepare('UPDATE accounts SET ' . $field . ' = ' . $field . ' + :item_count WHERE ' . (USE_ACCOUNT_NAME ? 'name' : 'id') . ' = :account');
 					$stmt->execute(array('item_count' => $arrayPDO['item_count'], 'account' => $arrayPDO['account']));
 
 					$stmt = $conn->prepare("UPDATE pagseguro_transactions SET status = 'DELIVERED' WHERE transaction_code = :transaction_code AND status = 'PAID'");
